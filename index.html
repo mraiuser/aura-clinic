@@ -39,10 +39,21 @@
   <div class="scroll-hero" id="scrollHero">
     <div class="scroll-hero__sticky" id="heroSticky">
 
-      <!-- Video -->
+      <!-- Static placeholder shown immediately, replaced by video -->
+      <div class="scroll-hero__poster" id="heroPoster">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80"
+             alt="Backyard before renovation" fetchpriority="high" />
+      </div>
+
+      <!-- Video (fades in once blob is ready) -->
       <video class="scroll-hero__video" id="heroVideo"
              muted playsinline preload="none" disablepictureinpicture>
       </video>
+
+      <!-- Subtle loading strip at very bottom -->
+      <div class="hero-load-strip" id="heroLoadStrip">
+        <div class="hero-load-fill" id="heroLoadFill"></div>
+      </div>
 
       <!-- Gradient vignette -->
       <div class="scroll-hero__vignette"></div>

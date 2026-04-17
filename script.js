@@ -14,34 +14,9 @@ const cornerTL   = document.getElementById('cornerTL');
 const cornerTC   = document.getElementById('cornerTC');
 const cornerTR   = document.getElementById('cornerTR');
 
-/* ── Loading overlay ── */
-const loader = document.createElement('div');
-loader.id = 'videoLoader';
-loader.innerHTML = `
-  <div class="vl-inner">
-    <div class="vl-ring"></div>
-    <span class="vl-text">Loading transformation…</span>
-    <div class="vl-bar-wrap"><div class="vl-bar" id="vlBar"></div></div>
-  </div>`;
-document.getElementById('heroSticky').appendChild(loader);
-
-const vlBar = document.getElementById('vlBar');
-const loaderStyle = document.createElement('style');
-loaderStyle.textContent = `
-#videoLoader{position:absolute;inset:0;z-index:50;display:flex;align-items:center;
-  justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);
-  transition:opacity .7s ease;}
-#videoLoader.done{opacity:0;pointer-events:none;}
-.vl-inner{display:flex;flex-direction:column;align-items:center;gap:1.2rem;}
-.vl-ring{width:40px;height:40px;border:2px solid rgba(255,255,255,.15);
-  border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.vl-text{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,255,255,.6);font-family:'DM Sans',sans-serif;}
-.vl-bar-wrap{width:160px;height:1.5px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
-.vl-bar{height:100%;width:0%;background:#fff;border-radius:2px;transition:width .1s linear;}
-`;
-document.head.appendChild(loaderStyle);
+/* ── Subtle load strip (replaces heavy overlay) ── */
+const loadStrip = document.getElementById('heroLoadStrip');
+const loadFill  = document.getElementById('heroLoadFill');
 
 /* ── Seek state machine ── */
 let targetTime   = 0;
@@ -80,7 +55,7 @@ fetch('timelapse.mp4')
         if (done) return;
         chunks.push(value);
         loaded += value.byteLength;
-        if (total > 0 && vlBar) vlBar.style.width = Math.round(loaded / total * 100) + '%';
+        if (total > 0 && loadFill) loadFill.style.width = Math.round(loaded / total * 100) + '%';
         return pump();
       });
     }
@@ -94,14 +69,19 @@ fetch('timelapse.mp4')
       video.currentTime = 0;
       videoBlobReady = true;
       applyScrollHeight();
-      if (vlBar) vlBar.style.width = '100%';
-      setTimeout(() => loader.classList.add('done'), 350);
+      /* Fade video in over the static poster */
+      loadFill.style.width = '100%';
+      setTimeout(() => {
+        video.classList.add('ready');
+        loadStrip.classList.add('done');
+      }, 200);
     }, { once: true });
   })
   .catch(() => {
     videoBlobReady = true;
     applyScrollHeight();
-    loader.classList.add('done');
+    video.classList.add('ready');
+    loadStrip.classList.add('done');
   });
 
 window.addEventListener('resize', applyScrollHeight, { passive: true });

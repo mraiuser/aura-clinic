@@ -247,13 +247,49 @@ em {
   background: #000;
 }
 
+/* Static poster — visible immediately, no wait */
+.scroll-hero__poster {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.scroll-hero__poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Video fades in over poster once blob is ready */
 .scroll-hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  will-change: transform;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  will-change: opacity;
+}
+.scroll-hero__video.ready {
+  opacity: 1;
+}
+
+/* Subtle 1px load strip at very bottom edge */
+.hero-load-strip {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  z-index: 10;
+  transition: opacity 0.8s ease 0.4s;
+}
+.hero-load-strip.done { opacity: 0; }
+.hero-load-fill {
+  height: 100%;
+  width: 0%;
+  background: rgba(255,255,255,0.55);
+  transition: width 0.15s linear;
 }
 
 /* Vignette: heavy at top (for nav) and bottom (for meta) */

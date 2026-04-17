@@ -292,19 +292,19 @@ em {
   transition: width 0.15s linear;
 }
 
-/* Vignette: heavy at top (for nav) and bottom (for meta) */
+/* Vignette: sits above video, below all text */
 .scroll-hero__vignette {
   position: absolute;
   inset: 0;
   background:
     linear-gradient(to bottom,
-      rgba(0,0,0,0.55) 0%,
-      rgba(0,0,0,0.0) 22%,
-      rgba(0,0,0,0.0) 55%,
-      rgba(0,0,0,0.65) 100%
+      rgba(0,0,0,0.50) 0%,
+      rgba(0,0,0,0.10) 30%,
+      rgba(0,0,0,0.25) 60%,
+      rgba(0,0,0,0.78) 100%
     );
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* ── Hero content: bottom-left headline + CTA ── */
@@ -312,7 +312,7 @@ em {
   position: absolute;
   bottom: clamp(4rem, 9vh, 7rem);
   left: clamp(1.5rem, 5vw, 4rem);
-  z-index: 3;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -328,12 +328,13 @@ em {
 }
 
 .hero-headline {
-  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-size: clamp(2.4rem, 5vw, 5rem);
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1.05;
   color: #fff;
   text-transform: uppercase;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
   will-change: transform, opacity;
 }
 
@@ -360,7 +361,7 @@ em {
   bottom: clamp(1.8rem, 3vh, 2.8rem);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 5;
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.25em;

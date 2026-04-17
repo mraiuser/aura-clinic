@@ -1,81 +1,73 @@
 /* ═══════════════════════════════════════════════════
    SCROLL-SCRUBBED VIDEO HERO
-   Strategy: fetch whole video → blob URL → instant seeks
+   Approach: stream directly (no blob wait), play→pause
+   decoder init so currentTime seeks work immediately
    ═══════════════════════════════════════════════════ */
 
 const video      = document.getElementById('heroVideo');
 const scrollHero = document.getElementById('scrollHero');
 const heroTitle  = document.querySelector('.hero-headline');
+const loadStrip  = document.getElementById('heroLoadStrip');
+const loadFill   = document.getElementById('heroLoadFill');
 
-/* ── Subtle load strip (replaces heavy overlay) ── */
-const loadStrip = document.getElementById('heroLoadStrip');
-const loadFill  = document.getElementById('heroLoadFill');
+let targetTime  = 0;
+let pendingSeek = false;
+let videoReady  = false;
 
-/* ── Seek state machine ── */
-let targetTime   = 0;
-let pendingSeek  = false;
-let videoBlobReady = false;
-
+/* ── Seek state machine (RAF loop, never overlaps) ── */
 video.addEventListener('seeked',  () => { pendingSeek = false; });
-video.addEventListener('seeking', () => { pendingSeek = true; });
+video.addEventListener('seeking', () => { pendingSeek = true;  });
 
-function trySeek() {
-  if (!videoBlobReady || pendingSeek) return;
-  if (Math.abs(video.currentTime - targetTime) < 0.016) return;
-  video.currentTime = targetTime;
-}
+(function rafLoop() {
+  if (videoReady && !pendingSeek) {
+    const diff = Math.abs(video.currentTime - targetTime);
+    if (diff > 0.016) video.currentTime = targetTime;
+  }
+  requestAnimationFrame(rafLoop);
+})();
 
-(function rafLoop() { trySeek(); requestAnimationFrame(rafLoop); })();
-
-/* ── Set scroll-container height ── */
+/* ── Set scroll height once duration is known ── */
 function applyScrollHeight() {
   const dur = video.duration;
   if (!isFinite(dur) || dur <= 0) return;
   scrollHero.style.height = Math.round(dur * 130 + window.innerHeight) + 'px';
 }
 
-/* ── Fetch entire video → blob URL (guarantees full seekability) ── */
-fetch('timelapse.mp4')
-  .then(res => {
-    if (!res.ok) throw new Error(res.status);
-    const total  = Number(res.headers.get('Content-Length')) || 0;
-    const reader = res.body.getReader();
-    const chunks = [];
-    let loaded = 0;
+/* ── Stream video directly — no blob download wait ──
+   play() forces the browser to decode the first frame,
+   then we pause immediately so currentTime seeks work. ── */
+video.src = 'timelapse.mp4';
+video.load();
 
-    function pump() {
-      return reader.read().then(({ done, value }) => {
-        if (done) return;
-        chunks.push(value);
-        loaded += value.byteLength;
-        if (total > 0 && loadFill) loadFill.style.width = Math.round(loaded / total * 100) + '%';
-        return pump();
-      });
-    }
-
-    return pump().then(() => new Blob(chunks, { type: 'video/mp4' }));
-  })
-  .then(blob => {
-    video.src = URL.createObjectURL(blob);
-    video.load();
-    video.addEventListener('loadedmetadata', () => {
-      video.currentTime = 0;
-      videoBlobReady = true;
-      applyScrollHeight();
-      /* Fade video in over the static poster */
-      loadFill.style.width = '100%';
-      setTimeout(() => {
-        video.classList.add('ready');
-        loadStrip.classList.add('done');
-      }, 200);
-    }, { once: true });
-  })
-  .catch(() => {
-    videoBlobReady = true;
-    applyScrollHeight();
+video.addEventListener('canplay', () => {
+  applyScrollHeight();
+  /* Init decoder: play a fraction then pause */
+  video.play().then(() => {
+    video.pause();
+    video.currentTime = 0;
+    videoReady = true;
+    /* Fade video in over poster */
     video.classList.add('ready');
-    loadStrip.classList.add('done');
+    if (loadStrip) loadStrip.classList.add('done');
+  }).catch(() => {
+    /* Autoplay blocked — still allow seeks */
+    videoReady = true;
+    video.classList.add('ready');
+    if (loadStrip) loadStrip.classList.add('done');
   });
+}, { once: true });
+
+/* Progress fill while buffering */
+video.addEventListener('progress', () => {
+  if (!loadFill || !video.duration) return;
+  try {
+    const buf = video.buffered;
+    if (buf.length) {
+      const pct = Math.round((buf.end(buf.length - 1) / video.duration) * 100);
+      loadFill.style.width = pct + '%';
+    }
+  } catch(e) {}
+});
 
 window.addEventListener('resize', applyScrollHeight, { passive: true });
 
@@ -95,13 +87,12 @@ window.addEventListener('scroll', () => {
     scrollTicking = false;
     const progress = getProgress();
     const dur = video.duration;
-
     if (isFinite(dur) && dur > 0) targetTime = progress * dur;
 
-    /* Subtle parallax on headline */
+    /* Subtle parallax on headline only */
     if (heroTitle) {
-      heroTitle.style.transform = `translateY(${progress * -30}px)`;
-      heroTitle.style.opacity   = 1 - progress * 0.6;
+      heroTitle.style.transform = `translateY(${progress * -40}px)`;
+      heroTitle.style.opacity   = String(Math.max(0, 1 - progress * 1.8));
     }
   });
 }, { passive: true });

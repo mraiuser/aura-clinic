@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pristine Exteriors — Backyard Renovation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <div class="nav__links">
+        <a href="#hero" class="nav__link active">Home</a>
+        <a href="#projects" class="nav__link">Projects</a>
+        <a href="#portfolio" class="nav__link">Portfolio</a>
+        <a href="#contact" class="nav__link">Contact</a>
+      </div>
+      <a href="#" class="nav__logo">PRISTINE<br>EXTERIORS</a>
+      <a href="#contact" class="nav__cta">Get a Free Quote</a>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="#hero">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn--dark">Get a Free Quote</a>
+    </div>
+  </nav>
+
+  <!-- ── SCROLL HERO ── -->
+  <div class="scroll-hero" id="scrollHero">
+    <div class="scroll-hero__sticky" id="heroSticky">
+
+      <!-- Video -->
+      <video class="scroll-hero__video" id="heroVideo"
+             muted playsinline preload="none" disablepictureinpicture>
+      </video>
+
+      <!-- Gradient vignette -->
+      <div class="scroll-hero__vignette"></div>
+
+      <!-- Editorial corner captions (inspo treatment) -->
+      <div class="scroll-hero__corner scroll-hero__corner--tl" id="cornerTL">
+        <span>Transform</span><br><span>your space.</span>
+      </div>
+      <div class="scroll-hero__corner scroll-hero__corner--tc" id="cornerTC">
+        Masterpiece<br>of Craftsmanship
+      </div>
+      <div class="scroll-hero__corner scroll-hero__corner--tr" id="cornerTR">
+        Space to<br>live beautifully.
+      </div>
+
+      <!-- Big overlapping title -->
+      <div class="scroll-hero__title-wrap">
+        <h1 class="scroll-hero__title" id="heroTitle">Pristine</h1>
+      </div>
+
+      <!-- Scroll stage copy -->
+      <div class="scroll-hero__stages" id="heroStages">
+        <div class="scroll-stage" data-from="0" data-to="0.22">
+          <span class="scroll-stage__label">Before</span>
+          <p class="scroll-stage__text">Your yard as it stands today</p>
+        </div>
+        <div class="scroll-stage" data-from="0.22" data-to="0.46">
+          <span class="scroll-stage__label">The Vision</span>
+          <p class="scroll-stage__text">Design meets intention</p>
+        </div>
+        <div class="scroll-stage" data-from="0.46" data-to="0.72">
+          <span class="scroll-stage__label">In Progress</span>
+          <p class="scroll-stage__text">Crafted with precision</p>
+        </div>
+        <div class="scroll-stage" data-from="0.72" data-to="1.0">
+          <span class="scroll-stage__label">After</span>
+          <p class="scroll-stage__text">Your dream. Realized.</p>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="scroll-hero__progress-wrap">
+        <div class="scroll-hero__progress-track">
+          <div class="scroll-hero__progress-fill" id="heroFill"></div>
+        </div>
+        <span class="scroll-hero__progress-pct" id="heroPct">0%</span>
+      </div>
+
+      <!-- Bottom meta -->
+      <div class="scroll-hero__meta">
+        <div class="hero__tags">
+          <button class="tag tag--active">Landscaping</button>
+          <button class="tag">Outdoor Kitchens</button>
+          <button class="tag">Decks</button>
+        </div>
+        <span class="hero__location">Serving the Greater Area</span>
+      </div>
+
+      <!-- Initial scroll hint -->
+      <div class="scroll-hero__hint" id="scrollHint">
+        <span>Scroll to see the transformation</span>
+        <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
+          <path d="M8 1v14M2 10l6 7 6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── TAGLINE ── -->
+  <section class="tagline">
+    <div class="tagline__inner">
+      <span class="tagline__label">About Us</span>
+      <h2 class="tagline__text">
+        Stunning <em>outdoor spaces</em> for homes where<br>
+        families <em>live, gather,</em> and <em>unwind.</em>
+      </h2>
+    </div>
+    <div class="tagline__feature">
+      <div class="tagline__feature-text">
+        <span class="label">• SIGNATURE SERVICE</span>
+        <p>Our full-service backyard renovation covers everything from initial design to final installation. We handle the vision so you can enjoy the result.</p>
+        <a href="#projects" class="link-arrow">Explore our work →</a>
+      </div>
+      <div class="tagline__feature-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="Outdoor deck" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="stats">
+    <div class="stats__inner">
+      <div class="stats__item">
+        <span class="stats__num">340<span class="stats__plus">+</span></span>
+        <span class="stats__label">Projects Completed</span>
+      </div>
+      <div class="stats__divider"></div>
+      <div class="stats__item">
+        <span class="stats__num">18<span class="stats__plus">+</span></span>
+        <span class="stats__label">Years of Experience</span>
+      </div>
+      <div class="stats__divider"></div>
+      <div class="stats__item">
+        <span class="stats__num">98<span class="stats__plus">%</span></span>
+        <span class="stats__label">Client Satisfaction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RECENT PROJECTS ── -->
+  <section class="projects" id="projects">
+    <div class="section-header">
+      <span class="label">Recent Projects</span>
+      <h2 class="section-title">Spaces we've<br><em>transformed</em></h2>
+    </div>
+    <div class="projects__grid">
+      <article class="project-card project-card--large">
+        <div class="project-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80" alt="Modern backyard with pool" />
+          <div class="project-card__overlay">
+            <span class="project-card__tag">Pool & Patio</span>
+            <h3 class="project-card__title">The Hartley Residence</h3>
+            <p class="project-card__loc">Scottsdale, AZ</p>
+          </div>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80" alt="Garden landscaping" />
+          <div class="project-card__overlay">
+            <span class="project-card__tag">Landscaping</span>
+            <h3 class="project-card__title">Morrison Garden</h3>
+            <p class="project-card__loc">Austin, TX</p>
+          </div>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" alt="Outdoor living area" />
+          <div class="project-card__overlay">
+            <span class="project-card__tag">Outdoor Kitchen</span>
+            <h3 class="project-card__title">The Vance Retreat</h3>
+            <p class="project-card__loc">Naples, FL</p>
+          </div>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=800&q=80" alt="Deck and pergola" />
+          <div class="project-card__overlay">
+            <span class="project-card__tag">Deck & Pergola</span>
+            <h3 class="project-card__title">Cedar Hill Estate</h3>
+            <p class="project-card__loc">Charlotte, NC</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── COMFORT BANNER ── -->
+  <section class="banner">
+    <div class="banner__inner">
+      <h2 class="banner__title">Comfort <span class="italic">×</span> Nature</h2>
+      <div class="banner__body">
+        <p class="banner__sub">Choose your space to rest</p>
+        <p class="banner__copy">Every exceptional outdoor experience begins with a refined vision and remarkable craftsmanship. We design backyards that become the heart of your home — spaces that inspire, refresh, and endure.</p>
+      </div>
+    </div>
+    <div class="banner__img">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80" alt="Luxury outdoor living" />
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO ── -->
+  <section class="portfolio" id="portfolio">
+    <div class="section-header section-header--row">
+      <div>
+        <span class="label">Portfolio</span>
+        <h2 class="section-title">Our finest <em>work</em></h2>
+      </div>
+      <a href="#contact" class="btn btn--outline">Start Your Project</a>
+    </div>
+    <div class="portfolio__masonry">
+      <div class="portfolio__col">
+        <div class="portfolio__item">
+          <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=700&q=80" alt="Stone patio" />
+          <div class="portfolio__info">
+            <span>Stone Patio</span>
+            <span class="portfolio__year">2024</span>
+          </div>
+        </div>
+        <div class="portfolio__item">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=700&q=80" alt="Modern home exterior" />
+          <div class="portfolio__info">
+            <span>Modern Backyard</span>
+            <span class="portfolio__year">2024</span>
+          </div>
+        </div>
+        <div class="portfolio__item">
+          <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=700&q=80" alt="Water feature" />
+          <div class="portfolio__info">
+            <span>Water Feature</span>
+            <span class="portfolio__year">2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio__col portfolio__col--offset">
+        <div class="portfolio__item">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80" alt="Luxury pool" />
+          <div class="portfolio__info">
+            <span>Luxury Pool</span>
+            <span class="portfolio__year">2025</span>
+          </div>
+        </div>
+        <div class="portfolio__item">
+          <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=700&q=80" alt="Fire pit area" />
+          <div class="portfolio__info">
+            <span>Fire Pit Lounge</span>
+            <span class="portfolio__year">2025</span>
+          </div>
+        </div>
+        <div class="portfolio__item">
+          <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=700&q=80" alt="Pergola dining" />
+          <div class="portfolio__info">
+            <span>Pergola Dining</span>
+            <span class="portfolio__year">2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-header">
+      <span class="label">Testimonials</span>
+      <h2 class="section-title">What our clients <em>say</em></h2>
+    </div>
+    <div class="testimonials__track-wrap">
+      <div class="testimonials__track" id="testimonialsTrack">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"Pristine Exteriors completely transformed our backyard into a resort-style paradise. The attention to detail was extraordinary — every stone, every plant, every light was placed with intention. We use our outdoor space every single day now."</blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">JH</div>
+            <div>
+              <strong>Jennifer & Mark Hartley</strong>
+              <span>Scottsdale, AZ</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"From the first design consultation to the final walkthrough, the experience was seamless. The team was professional, the timeline was met, and the result exceeded every expectation we had. Our outdoor kitchen is the envy of the neighborhood."</blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">DV</div>
+            <div>
+              <strong>David & Susan Vance</strong>
+              <span>Naples, FL</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"We had a rough, overgrown backyard that we'd given up on. Pristine Exteriors saw potential where we saw problems. Six weeks later we had a beautifully designed garden retreat. Absolutely phenomenal work."</blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">TM</div>
+            <div>
+              <strong>Thomas & Rachel Morrison</strong>
+              <span>Austin, TX</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"The cedar pergola and deck they built for us is stunning. The craftsmanship is top-tier and it's become our favorite spot to entertain. I've already referred three neighbors — every one of them was equally impressed."</blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">PC</div>
+            <div>
+              <strong>Patricia & Robert Cedar</strong>
+              <span>Charlotte, NC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials__controls">
+      <button class="tctl tctl--prev" id="tPrev" aria-label="Previous">←</button>
+      <div class="testimonials__dots" id="tDots"></div>
+      <button class="tctl tctl--next" id="tNext" aria-label="Next">→</button>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta" id="contact">
+    <div class="cta__inner">
+      <span class="label label--light">Let's Build Together</span>
+      <h2 class="cta__title">Your dream backyard<br><em>starts here.</em></h2>
+      <p class="cta__sub">Schedule a free consultation and let our designers bring your vision to life. No pressure — just possibilities.</p>
+      <form class="cta__form" id="ctaForm">
+        <div class="cta__fields">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Email Address" required />
+          <input type="tel" name="phone" placeholder="Phone Number" />
+          <select name="service">
+            <option value="" disabled selected>Service Interested In</option>
+            <option>Full Backyard Renovation</option>
+            <option>Pool & Spa</option>
+            <option>Outdoor Kitchen</option>
+            <option>Deck & Pergola</option>
+            <option>Landscaping</option>
+            <option>Lighting & Irrigation</option>
+          </select>
+        </div>
+        <textarea name="message" rows="4" placeholder="Tell us about your project…"></textarea>
+        <button type="submit" class="btn btn--dark btn--lg">Send My Request →</button>
+      </form>
+      <div class="cta__success" id="ctaSuccess" hidden>
+        <h3>Thank you! We'll be in touch within 24 hours.</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">PRISTINE<br>EXTERIORS</span>
+        <p>Crafting exceptional outdoor spaces since 2007. Licensed, insured, and dedicated to transforming backyards across the region.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Services</h4>
+          <a href="#">Full Renovations</a>
+          <a href="#">Pool & Spa</a>
+          <a href="#">Outdoor Kitchens</a>
+          <a href="#">Decks & Pergolas</a>
+          <a href="#">Landscaping</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#projects">Projects</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer__col">
+          <h4>Get in Touch</h4>
+          <a href="tel:+15551234567">(555) 123-4567</a>
+          <a href="mailto:hello@pristineexteriors.com">hello@pristineexteriors.com</a>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram">Ig</a>
+            <a href="#" aria-label="Facebook">Fb</a>
+            <a href="#" aria-label="Houzz">Hz</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Pristine Exteriors. All rights reserved.</span>
+      <span>Privacy Policy · Terms of Service</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

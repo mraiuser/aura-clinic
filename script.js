@@ -5,7 +5,7 @@
 
 const video      = document.getElementById('heroVideo');
 const scrollHero = document.getElementById('scrollHero');
-const heroTitle  = document.getElementById('heroTitle');
+const heroTitle  = document.querySelector('.hero-brand__pristine');
 const heroFill   = document.getElementById('heroFill');
 const heroPct    = document.getElementById('heroPct');
 const scrollHint = document.getElementById('scrollHint');

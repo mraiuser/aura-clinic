@@ -293,27 +293,99 @@ em {
   text-align: right;
 }
 
-/* ── Big overlapping title ── */
-.scroll-hero__title-wrap {
+/* ── Brand lockup ── */
+.hero-brand {
   position: absolute;
   inset: 0;
+  z-index: 3;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 4rem) clamp(8rem, 15vh, 12rem);
   pointer-events: none;
+  gap: 2rem;
 }
-.scroll-hero__title {
-  font-size: clamp(5.5rem, 20vw, 22rem);
+
+.hero-brand__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.hero-brand__name {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 0.9;
+}
+
+.hero-brand__pristine {
+  font-size: clamp(4.5rem, 13vw, 14rem);
   font-weight: 900;
-  letter-spacing: -0.035em;
-  line-height: 0.85;
+  letter-spacing: -0.04em;
   color: #fff;
-  mix-blend-mode: overlay;
-  opacity: 0.88;
-  text-align: center;
+  line-height: 0.88;
+  display: block;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.3);
   will-change: transform, opacity;
-  transition: none;
+}
+
+.hero-brand__exteriors {
+  font-size: clamp(1.4rem, 3.5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  display: block;
+  padding-left: 0.12em;
+}
+
+.hero-brand__tagline {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  padding-left: 0.15em;
+  margin-top: 0.4rem;
+}
+
+.hero-brand__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.2rem;
+  max-width: 240px;
+  pointer-events: all;
+}
+
+.hero-brand__desc {
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.55);
+  text-align: right;
+}
+
+.hero-brand__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.08);
+}
+.hero-brand__cta:hover {
+  background: #fff;
+  color: #0a0a0a;
+  border-color: #fff;
 }
 
 /* ── Stage copy ── */
@@ -321,37 +393,41 @@ em {
   position: absolute;
   bottom: clamp(7rem, 12vh, 10rem);
   left: clamp(1.5rem, 5vw, 4rem);
-  z-index: 3;
+  z-index: 4;
 }
 .scroll-stage {
   display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  align-items: baseline;
+  gap: 0.75rem;
   position: absolute;
   bottom: 0;
   left: 0;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
+  white-space: nowrap;
 }
 .scroll-stage.active {
   opacity: 1;
   transform: translateY(0);
 }
 .scroll-stage__label {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
 }
 .scroll-stage__text {
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 700;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 600;
   color: #fff;
   letter-spacing: -0.01em;
-  line-height: 1.2;
+  line-height: 1;
 }
 
 /* ── Progress bar ── */

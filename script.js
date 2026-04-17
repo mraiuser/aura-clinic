@@ -5,14 +5,7 @@
 
 const video      = document.getElementById('heroVideo');
 const scrollHero = document.getElementById('scrollHero');
-const heroTitle  = document.querySelector('.hero-brand__name');
-const heroFill   = document.getElementById('heroFill');
-const heroPct    = document.getElementById('heroPct');
-const scrollHint = document.getElementById('scrollHint');
-const stages     = Array.from(document.querySelectorAll('.scroll-stage'));
-const cornerTL   = document.getElementById('cornerTL');
-const cornerTC   = document.getElementById('cornerTC');
-const cornerTR   = document.getElementById('cornerTR');
+const heroTitle  = document.querySelector('.hero-headline');
 
 /* ── Subtle load strip (replaces heavy overlay) ── */
 const loadStrip = document.getElementById('heroLoadStrip');
@@ -105,23 +98,11 @@ window.addEventListener('scroll', () => {
 
     if (isFinite(dur) && dur > 0) targetTime = progress * dur;
 
-    const pct = Math.round(progress * 100);
-    heroFill.style.width = pct + '%';
-    heroPct.textContent  = pct + '%';
-
-    heroTitle.style.transform = `scale(${1 + progress * 0.07})`;
-    heroTitle.style.opacity   = progress < 0.8
-      ? 0.88 : (0.88 * (1 - ((progress - 0.8) / 0.2) * 0.55));
-
-    const cOp = Math.max(0, 1 - progress / 0.08);
-    cornerTL.style.opacity = cornerTC.style.opacity = cornerTR.style.opacity = cOp;
-
-    scrollHint.classList.toggle('hidden', progress > 0.02);
-
-    stages.forEach(s => {
-      s.classList.toggle('active',
-        progress >= parseFloat(s.dataset.from) && progress < parseFloat(s.dataset.to));
-    });
+    /* Subtle parallax on headline */
+    if (heroTitle) {
+      heroTitle.style.transform = `translateY(${progress * -30}px)`;
+      heroTitle.style.opacity   = 1 - progress * 0.6;
+    }
   });
 }, { passive: true });
 
